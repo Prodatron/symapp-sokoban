@@ -1,0 +1,221 @@
+<title>Sokoban help</title>
+
+<h1>1000-Introduction</h1>
+<br>
+<b>INTRODUCTION TO Sokoban</b><br>
+<br>
+Sokoban for SymbOS is a quite advanced implementation of the classic Sokoban game from 1982 developed by <i>Hiroyuki Imabayashi</i>.<br>
+<br>
+This version extends the original game principle with a lot of additional puzzle objects such as coloured boxes, ice floors, holes, portals, rails and magnets.<br>
+<br>
+Most of the game design has been cloned from <b>http://www.sokobanonline.com</b> , one of the best Sokoban websites you can find on the internet.<br>
+<br>
+
+<h2>1100-Feature overview</h2>
+<br>
+<b>MODERN PUZZLE OBJECTS</b><br>
+<br>
+- Coloured boxes<br>
+- Wild card boxes<br>
+- Ice floors<br>
+- Fragile floors and holes<br>
+- Rails<br>
+- Portals<br>
+- Magnets<br>
+- Twin workers<br>
+<br>
+<b>MORE FEATURES</b><br>
+<br>
+- undo your last step or take and restore a snapshot of the current situation<br>
+- create your own puzzle packs and load them into your game<br>
+<br>
+
+<h2>1200-What's new?</h2>
+<br>
+<b>WHAT'S NEW?</b><br>
+<br>
+2021-10-14: <b>Sokoban 1.0 release</b><br>
+<br>
+First Sokoban version for SymbOS.<br>
+
+<h1>2000-Using Sokoban</h2>
+<h2>2100-Your mission</h2>
+<br>
+<b>YOUR MISSION</b><br>
+<br>
+Clean up your room by moving all boxes to the tagged destinations. You can only move one box at the same time. Take care that it isn't blocked with walls, other boxes and additional maze objects.<br>
+<br>
+A puzzle is solved, when all boxes are placed onto a tagged field.<br>
+<br>
+Have a look at the next chapter for learning more about the additional modern puzzle objects.<br>
+<br>
+<h2>2200-Modern puzzle objects</h2>
+<br>
+<b>MODERN PUZZLE OBJECTS</b><br>
+<br>
+This is a description of the behaviour and usage of the modern puzzle objects in Sokoban for SymbOS:<br>
+<br>
+<b>- Coloured boxes</b><br>
+Coloured boxes have to be placed at the proper destination fields to complete the puzzle<br>
+<br>
+<b>- Wild card boxes</b><br>
+Wild card boxes just stand around and don't need to reach a destination. They can be both annoying but also useful as well for some of the modern puzzle objects like portals or holes.<br>
+<br>
+<b>- Ice floors</b><br>
+When entering ice floors, you and your boxes will slide away until you reach a stable ground again or hit something else.<br>
+<br>
+<b>- Fragile floors and holes</b><br>
+Fragile floors will break away and remain as a hole, when you cross them once. Try not to fall in a hole, as your worker will die. Your boxes will disappear, when they are moved across open holes, but you can stuff them with wild card boxes.<br>
+<br>
+<b>- Rails</b><br>
+Rails are forcing your boxes only to move to fixed directions. A box can't enter a rail from the side.<br>
+<br>
+<b>- Portals</b><br>
+Portals will beam you and your boxes to another place inside the maze, where the other end is located. Multiple types of portals are possible, and you can block a portal as well.<br>
+<br>
+<b>- Magnets</b><br>
+A magnet will hold your box, if it is next to its open end. You have to push the magnet switch to rotate all the magnets in the maze and free your boxes.<br>
+<br>
+<b>- Twin workers</b><br>
+In some puzzles you have to do teamworking. One worker can be moved, while the second one is resting. Switch between both workers by mouse clicking the sleeping one or by pressing "E".<br>
+<br>
+
+<h2>2300-Keyboard</h2>
+<br>
+<b>KEYBOARD</b><br>
+<br>
+The following is a list of all key functions.<br>
+<br>
+<au><ad><al><ar><t5>move worker<br>
+E               <t5>switch to resting worker<br>
+U               <t5>undo last step<br>
+<br>
+
+<h1>3000-Building own puzzles</h2>
+<h2>3100-Puzzle pack files</h2>
+<br>
+<b>PUZZLE PACK FILES</b><br>
+<br>
+Puzzle packs for Sokoban are stored in "*.ysb" files. These are textfiles in ASCII format. They are mostly compatible with standard Sokoban files, which are using the "*.xsb" file extension and store only one puzzle per file, but this would end in huge directories when managing many dozen of puzzles.<br>
+<br>
+"*.ysb" files used in Sokoban for SymbOS can contain multiple puzzles and can have a maximum size of 4KB, which is usually enough for 40-50 puzzles. Each puzzle is stored as a block of chars, which represent the different elements of a puzzle maze (walls, floors, boxes, destinations etc.).<br>
+<br>
+A simple puzzle can look like this:<br>
+#<t1>#<t2>#<t3>#<t4>#<t5>#<t6>#<br>
+#<t1>@<t2>#<t3> <t4> <t5> <t6>#<br>
+#<t1> <t2>#<t3> <t4>$<t5> <t6>#<br>
+#<t1> <t2> <t3> <t4> <t5>#<t6>#<br>
+#<t1>#<t2>.<t3> <t4> <t5>#<t6> <br>
+ <t1>#<t2>#<t3>#<t4>#<t5>#<t6> <br>
+<br>
+As you may guess, <b>#</b> are the walls, <b>@</b> is the player, <b>$</b> is a box and the <b>.</b> dot is the destination for the box.<br>
+<br>
+Please see the next chapter for information about all char codes.<br>
+<br>
+The maximum size of one puzzle is 10x10 fields, including outer walls. Puzzles larger than this will be ignored.<br>
+<br>
+Each puzzle block is seperated by an (completely!) empty line from the next one.<br>
+<br>
+The last puzzle block in the file is followed by an empty line and a line starting with a "." (dot). Everything behind this will be ignored, but this final dot is necessary for terminating the data, otherwise it could crash the application.<br>
+<br>
+
+<h2>3200-Char codes</h2>
+<br>
+<b>CHAR CODES</b><br>
+<br>
+<b>CLASSIC CHAR CODES</b><br>
+<br>
+The following char codes are Sokoban standard and compatible with existing "*.xsb" files. You can use them for building all kind of classic Sokoban puzzles.<br>
+<br>
+#       <t4>Wall<br>
+[Space] <t4>Floor<br>
+$       <t4>box<br>
+.       <t4>destination<br>
+*       <t4>box placed on destination<br>
+@       <t4>worker figure (player)<br>
++       <t4>worker placed on destination<br>
+<br>
+<b>CHAR CODES FOR MODERN OBJECTS</b><br>
+<br>
+<b>Coloured and wild card boxes</b><br>
+<br>
+A,B,C,  <t4>Coloured box of type A-E<br>
+  D,E<br>
+a,b,c,  <t4>Destination for boxes of type A-E<br>
+  d,e<br>
+?       <t4>wild card box<br>
+1,2,3,  <t4>wild card box directly placed on<br>
+  4,5   <t4>destination for box type A-E<br>
+<br>
+<b>Special floors</b><br>
+<br>
+/       <t4>ice floor<br>
+%       <t4>ice floor with box placed on it<br>
+'       <t4>fragile floor<br>
+"       <t4>broken floor (hole)<br>
+<br>
+<b>Portals</b><br>
+<br>
+P       <t4>portal type 1<br>
+p       <t4>portal type 2<br>
+O       <t4>portal type 3<br>
+<br>
+<b>Magnets</b><br>
+<br>
+M       <t4>magnet pointing left<br>
+m       <t4>magnet pointing right<br>
+N       <t4>magnet pointing up<br>
+n       <t4>magnet pointing down<br>
+S       <t4>magnet switch<br>
+<br>
+<b>Rails</b><br>
+<br>
+-       <t4>rail horizontal<br>
+|       <t4>rail vertical<br>
+&LT;    <t4>rail L shaped down right (*)<br>
+^       <t4>rail L shaped down left (*)<br>
+V       <t4>rail L shaped up right (*)<br>
+>       <t4>rail L shaped up right (*)<br>
+{       <t4>rail T cross to left<br>
+}       <t4>rail T cross to right<br>
+[       <t4>rail T cross to up<br>
+]       <t4>rail T cross to down<br>
+<br>
+(*) hint: rotate these chars in your head by 45 degree to "see" the rail shape.<br>
+<br>
+<b>Miscellaneous</b><br>
+<br>
+R       <t4>resting worker (second figure)<br>
+u,v,w,  <t4>worker placed on destination for<br>
+  x,y   <t4>coloured box A-E<br>
+=       <t4>tile outside a maze (usually<br>
+        <t4>automatically filled)<br>
+<br>
+
+<h2>3300-Combined fields</h2>
+<br>
+<b>COMBINED FIELDS</b><br>
+<br>
+<b>\</b> is used for defining a field with two combined elements.<br>
+<br>
+Most char codes represent either a maze element, a box or the worker figure. There are a few codes, which represent a combination of both like "+" (worker on destination) or "1" (wild card box on destination type A).<br>
+<br>
+For building all kind of cool puzzles it can be necessary to place boxes and workers on fields, which already contain special objects like rails, ice floors or coloured destinations. But it would be impossible to define single char codes for all kind of these combination.<br>
+<br>
+Use...<br>
+<br>
+<b>\[char1][char2]</b><br>
+<br>
+...for defining a field, which contains both a special floor and a box or worker. It will ruin the readability of your maze in the ASCII file a little bit, but this is the only way for realizing advanced puzzles. Such cases are rare anyway.<br>
+<br>
+<b>Examples</b><br>
+<br>
+<b>\?-</b>  <t4>place wild card box on left-right rail<br>
+<b>\A/</b>  <t4>place coloured box type A on ice floor<br>
+<br>
+<b>Limitations</b><br>
+<br>
+- don't place boxes and workers on portals, walls, magnets, magnet switches or in the "outer space" region<br>
+- it is currently not possible to place any kind of box on a T-cross rail segment (coming later)<br>
+- it is currently not possible to place workers and resting workers on all kind of special floors, if not supported by an existing single char code (coming soon)<br>
+<br>
